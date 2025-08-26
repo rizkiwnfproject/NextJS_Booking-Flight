@@ -8,6 +8,7 @@ import React, { useActionState, type FC } from "react";
 import { useFormStatus } from "react-dom";
 import { saveAirplane, updateAirplane } from "../lib/actions";
 import type { Airplane } from "@prisma/client";
+import ButtonSubmitForm from "../../components/button-submit-form";
 
 interface FormAirplaneProps {
   type?: "ADD" | "EDIT";
@@ -19,14 +20,6 @@ const initialFormState: ActionResult = {
   errorDesc: [],
 };
 
-const SubmitButton = () => {
-  const { pending } = useFormStatus();
-  return (
-    <Button disabled={pending} className="w-full" type="submit">
-      {pending ? "Loading..." : "Submit"}
-    </Button>
-  );
-};
 
 const FormAirplane: FC<FormAirplaneProps> = ({ type, defaultValues }) => {
   const updateAirplaneWithId = (_state: ActionResult, formData: FormData) =>
@@ -79,7 +72,7 @@ const FormAirplane: FC<FormAirplaneProps> = ({ type, defaultValues }) => {
             // defaultValue={defaultValues?.image}
           />
         </div>
-        <SubmitButton />
+        <ButtonSubmitForm />
       </form>
     </>
   );

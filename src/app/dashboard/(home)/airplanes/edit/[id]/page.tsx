@@ -1,6 +1,7 @@
 import React, { type FC } from "react";
 import FormAirplane from "../../components/form-airplane";
 import { getAirplaneById } from "../../lib/actions";
+import { Metadata } from "next";
 
 type Params = {
   id: string;
@@ -9,6 +10,10 @@ type Params = {
 interface EditAirplanePageProps {
   params: Params
 }
+
+export const metadata: Metadata = {
+  title: "Edit | Flights",
+};
 
 const EditAirplanePage: FC<EditAirplanePageProps> = async ({params}) => {
    const data = await getAirplaneById(params.id)

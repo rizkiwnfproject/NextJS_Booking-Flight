@@ -3,6 +3,16 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --color-flysha-light-purple: #b88dff;
+  --color-flysha-black: #080318;
+  --color-flysha-off-purple: #aea6c7;
+  --color-flysha-bg-purple: #1d1730;
+  --color-flysha-red: #ff2a2a;
+  --color-flysha-grey: #909296;
+  --color-flysha-dark-grey: #393449;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -119,4 +129,16 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+@keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-slide {
+  animation: slide 10s linear infinite;
 }
