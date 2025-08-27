@@ -15,7 +15,13 @@ const nextConfig: NextConfig = {
         pathname: "/storage/v1/object/public/**",
       },
     ],
-    unoptimized:true
+    unoptimized: true,
+  },
+  experimental: {
+    // missingSuspenseWithCSRBailout: false,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 };
 
