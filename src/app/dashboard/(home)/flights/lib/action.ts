@@ -51,10 +51,16 @@ export async function saveFlight(
 
 export async function updateFlight(
   prevState: unknown,
-  id: string,
+  id: string | null,
   formData: FormData
 ): Promise<ActionResult> {
-  const depatureDate = new Date(formData.get("depatureDate") as string);
+  if (!id){
+     return {
+      errorTitle: "Params ID Missing",
+      errorDesc: [],
+    };
+  }
+     const depatureDate = new Date(formData.get("depatureDate") as string);
   const arrivalDate = new Date(formData.get("arrivalDate") as string);
 
   const validate = formFlightSchema.safeParse({
@@ -95,5 +101,5 @@ export async function deleteFlight(id: string) {
     console.log(error);
   }
 
-  revalidatePath('/dashboard/flights')
+  revalidatePath("/dashboard/flights");
 }

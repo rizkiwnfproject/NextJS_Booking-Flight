@@ -6,13 +6,17 @@ import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export async function logout(): Promise<{ error: string } | null> {
-  const { session, user } = await getUser();
+export async function logout(): Promise<void> {
+  const { session } = await getUser();
 
   if (!session) {
-    return {
-      error: "UnAuthorized",
-    };
+    // return {
+    //   error: "UnAuthorized",
+    // };
+    // return Response.json({ error: "Unauthorized" }, { status: 401 });
+    console.log("unauthorized");
+
+    redirect("/sign-in");
   }
   await lucia.invalidateSession(session.id);
   const sessionCookie = lucia.createBlankSessionCookie();
@@ -32,7 +36,7 @@ export async function searchFlight(formData: FormData) {
     date: formData.get("date"),
   };
 
-  const queryParams = objectToParams(searchData)
+  const queryParams = objectToParams(searchData);
 
-  return redirect(`/available-flights?${queryParams}`)
+  return redirect(`/available-flights?${queryParams}`);
 }

@@ -5,6 +5,7 @@ import CompanyLogos from "../components/company-logos";
 import Navbar from "../components/navbar";
 import { searchFlight } from "./lib/actions";
 
+
 export default async function HomePage() {
   const filter = await getCityFilter();
   // console.log(filter);

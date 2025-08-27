@@ -31,10 +31,10 @@ const initialFormState: ActionResult = {
 export default function FormFlight({
   airplanes,
   type,
-  defaultValues,
+  defaultValues = null,
 }: FormFlightsProps) {
   const updateFlightWithId = (_state: ActionResult, formData: FormData) =>
-    updateFlight(null, defaultValues?.id!!, formData);
+    updateFlight(null, defaultValues ? defaultValues.id : null, formData);
 
   const [state, formAction] = useFormState(
     type === "ADD" ? saveFlight : updateFlightWithId,
@@ -118,10 +118,11 @@ export default function FormFlight({
               id="depatureDate"
               min={0}
               className="block"
-              defaultValue={dateFormat(
-                defaultValues?.depatureDate,
-                "YYYY-MM-DDTHH:MM"
-              )}
+              defaultValue={
+                defaultValues?.depatureDate
+                  ? dateFormat(defaultValues?.depatureDate, "YYYY-MM-DDTHH:MM")
+                  : undefined
+              }
               required
             />
           </div>
@@ -165,10 +166,11 @@ export default function FormFlight({
               id="arrivalDate"
               min={0}
               className="block"
-              defaultValue={dateFormat(
-                defaultValues?.arrivalDate,
-                "YYYY-MM-DDTHH:MM"
-              )}
+              defaultValue={
+                defaultValues?.arrivalDate
+                  ? dateFormat(defaultValues?.arrivalDate, "YYYY-MM-DDTHH:MM")
+                  : undefined
+              }
               required
             />
           </div>

@@ -1,9 +1,16 @@
-import { FlightSeat, TypeSeat } from "@prisma/client";
+import { Airplane, Flight, FlightSeat, TypeSeat } from "@prisma/client";
 import { clsx, type ClassValue } from "clsx";
 import dayjs from "dayjs";
 import { twMerge } from "tailwind-merge";
 
-export const CHECKOUT_KEY = 'CHECKOUT_KEY'
+export type Checkout = {
+  id?: string;
+  seat?: TypeSeat;
+  flightDetail?: Flight & { plane: Airplane };
+  seatDetail?: FlightSeat;
+};
+
+export const CHECKOUT_KEY = "CHECKOUT_KEY";
 
 export const SEAT_VALUES = {
   ECONOMY: {
@@ -106,3 +113,16 @@ export const availableSeats = (seats: FlightSeat[]) => {
     totalSeatFirst,
   };
 };
+
+export function makeId(length: number) {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+}

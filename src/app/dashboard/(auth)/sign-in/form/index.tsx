@@ -6,7 +6,7 @@ import { ActionResult, handleSignIn } from "./actions";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-interface FormSignInProps {}
+// interface FormSignInProps {}
 
 const initialFormState: ActionResult = {
   errorTitle: null,
@@ -20,7 +20,7 @@ const SubmitButton = () => {
     </Button>
   );
 };
-const FormSignIn: FC<FormSignInProps> = ({}) => {
+const FormSignIn = ({}) => {
   const [state, formAction] = useFormState(handleSignIn, initialFormState);
 
   return (

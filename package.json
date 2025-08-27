@@ -31,11 +31,13 @@
     "lucia": "^3.2.2",
     "lucide-react": "^0.540.0",
     "next": "15.5.0",
+    "next-themes": "^0.4.6",
     "oslo": "^1.2.1",
     "postcss": "^8.5.6",
     "prisma": "^5.22.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
     "zod": "^4.0.17"
   },

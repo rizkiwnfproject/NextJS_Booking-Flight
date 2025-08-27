@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
 import React, { type FC } from "react";
-import { useFormStatus } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import { deleteAirplane } from "../lib/actions";
+import { ActionResult } from "@/app/dashboard/(auth)/sign-in/form/actions";
 
 interface DeleteAirPlaneProps {
   id: string;
@@ -23,10 +24,16 @@ function SubmitButton() {
   );
 }
 const DeleteAirPlane: FC<DeleteAirPlaneProps> = ({ id }) => {
-    const DeleteAirPlaneWithId = deleteAirplane.bind(null, id)
+  const initialState: ActionResult = { errorTitle: null, errorDesc: null };
+
+  const [state, formAction] = useFormState(
+    deleteAirplane.bind(null, id),
+    initialState
+  );
+  // const DeleteAirPlaneWithId = deleteAirplane.bind(null, id)
   return (
     <>
-      <form action={DeleteAirPlaneWithId}>
+      <form action={formAction}>
         <SubmitButton />
       </form>
     </>
