@@ -3,6 +3,24 @@ import { clsx, type ClassValue } from "clsx";
 import dayjs from "dayjs";
 import { twMerge } from "tailwind-merge";
 
+export const CHECKOUT_KEY = 'CHECKOUT_KEY'
+
+export const SEAT_VALUES = {
+  ECONOMY: {
+    label: "Economy",
+    additionalPrice: 1,
+  },
+  BUSINESS: {
+    label: "Business",
+    additionalPrice: 1.5,
+  },
+  FIRST: {
+    label: "First",
+    additionalPrice: 2,
+  },
+};
+export type SeatValuesType = keyof typeof SEAT_VALUES;
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -46,6 +64,19 @@ export const rupiahFormat = (value: number) => {
   }).format(value);
 };
 
+export const objectToParams = (obj: { [key: string]: unknown }) => {
+  const queryParams = Object.keys(obj)
+    .map((key) => {
+      if (obj[key] !== null) {
+        return `${key}=${obj[key]}`;
+      }
+      return "";
+    })
+    .filter((key) => key !== "")
+    .join("&");
+  return queryParams;
+};
+
 export const availableSeats = (seats: FlightSeat[]) => {
   const totalSeatEconomy = seats.filter(
     (item) => item.type === "ECONOMY"
@@ -65,13 +96,13 @@ export const availableSeats = (seats: FlightSeat[]) => {
     (item) => item.type === "FIRST" && item.isBooked
   ).length;
 
-  return{
+  return {
     economyBooked,
     businessBooked,
     firstBooked,
 
     totalSeatEconomy,
     totalSeatBusiness,
-    totalSeatFirst
-  }
+    totalSeatFirst,
+  };
 };
