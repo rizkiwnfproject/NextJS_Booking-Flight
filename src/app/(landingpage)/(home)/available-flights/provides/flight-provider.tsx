@@ -81,8 +81,6 @@ const FlightProvider: FC<FlightProviderProps> = ({ children }) => {
     date: search.get("date"),
   };
 
-  console.log(params);
-
   const [state, dispatch] = useReducer(filterReducer, {
     arrival: params.arrival,
     date: params.date,

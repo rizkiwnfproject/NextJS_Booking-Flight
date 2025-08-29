@@ -24,8 +24,6 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    console.log(body);
-
     await prisma.flightSeat.update({
       where: {
         id: transaction.seatId,

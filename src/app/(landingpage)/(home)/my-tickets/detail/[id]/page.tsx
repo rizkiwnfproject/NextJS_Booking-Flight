@@ -4,6 +4,7 @@ import Benefits from "../../../checkout/components/benefits";
 import TransactionDetail from "./components/transaction-detail";
 import FlightDetail from "./components/flight-detail";
 import { getDetailTicket } from "../../lib/data";
+import { dateFormat } from "@/lib/utils";
 
 type Params = {
   id: string;
@@ -30,10 +31,10 @@ export default async function DetailTicketPage({ params }: DetailTicketProps) {
             </p>
             <div className="flex flex-col gap-1">
               <h1 className="font-bold text-[32px] leading-[48px]">
-                Jakarta to Shanghai
+                {data?.flight.depatureCity} to {data?.flight.destinationCity}
               </h1>
               <p className="font-medium text-lg leading-[27px]">
-                10 March 2024
+                {data?.bookingDate ? dateFormat(data?.bookingDate, "DD MMM YYYY") : ""}
               </p>
             </div>
           </div>
@@ -49,7 +50,7 @@ export default async function DetailTicketPage({ params }: DetailTicketProps) {
           {data && <FlightDetail data={data} />}
           <div className="flex flex-col mt-[63px] gap-[30px]">
             <Benefits />
-            {data && <TransactionDetail data={data}/>}
+            {data && <TransactionDetail data={data} />}
           </div>
         </div>
       </section>

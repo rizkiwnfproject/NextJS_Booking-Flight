@@ -40,7 +40,6 @@ export default function FormFlight({
     type === "ADD" ? saveFlight : updateFlightWithId,
     initialFormState
   );
-  // console.log(defaultValues);
 
   return (
     <>

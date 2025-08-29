@@ -38,10 +38,6 @@ const useTransaction = ({ user }: Props) => {
         : 0
     );
 
-    console.log("total price ", totalPrice);
-    console.log("data dari flight detail price ", data?.flightDetail?.price);
-    console.log("data dari selected price ", selectedSeat.additionalPrice);
-
     const bodyData = {
       bookingDate: new Date(),
       customerId: user?.id,
